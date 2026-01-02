@@ -40,8 +40,14 @@ Website ini buat ruang kecil kita nyimpen cerita, cita-cita, dan kenangan kita</
 <ul><li>Peluk 24/7</li><li>Jajan banyak</li><li>Punya capybara</li><li>Main game (sampe puas)</li><li>IP bagus</li></ul>
 </div>
 <script>
-const start=new Date("2025-01-03");
-const today=new Date();
-document.getElementById("days").innerText=Math.floor((today-start)/(1000*60*60*24));
+const start = new Date(2025, 0, 3); // 3 Jan 2025 WIB (bulan dimulai dari 0)
+const today = new Date();
+
+// paksa keduanya ke jam 00:00 WIB
+start.setHours(0,0,0,0);
+today.setHours(0,0,0,0);
+
+const diff = Math.floor((today - start) / 86400000);
+document.getElementById("days").innerText = diff;
 </script>
-</body></html>
+
