@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Our Love Story</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(to bottom,#fce7f3,white)}
+.container{max-width:1100px;margin:auto;padding:24px}
+h1{font-size:40px}
+h2{font-size:28px;margin-top:48px}
+.card{background:white;padding:16px;border-radius:20px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+.grid{display:grid;gap:16px}
+.grid2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.gallery{display:flex;gap:16px;overflow-x:auto;padding-bottom:10px}
+.gallery img{width:260px;height:330px;object-fit:cover;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+ul{margin-left:20px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Our Love Story</h1>
+<p><b><span id="days"></span></b> hari yang lalu kita officially pacaran.
+Website ini adalah ruang kecil untuk menyimpan cerita, mimpi, dan kenangan kami.</p>
+<h2>About Us</h2>
+<div class="grid grid2">
+<div class="card"><b>Virdhi Yastana Buma (Virdhi)</b><br>Undergraduate computing student at ITB<br>Born: August 14th 2007</div>
+<div class="card"><b>Felicia Muharam Putri Pandu (Felicia)</b><br>Undergraduate physics student at UI<br>Born: January 21st 2007</div>
+</div>
+<h2>What We Loves</h2>
+<div class="grid grid2">
+<div class="card"><b>Felicia</b><ul><li>Mam</li><li>Buku</li><li>Bobo</li><li>Biceps</li><li>Nonton</li><li>Uang</li></ul></div>
+<div class="card"><b>Virdhi</b><ul><li>Uang</li><li>Felicia Muharam Putri Pandu</li></ul></div>
+</div>
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="img1.jpg"><img src="img2.jpg"><img src="img3.jpg"><img src="img4.jpg"><img src="img5.jpg">
+</div>
+<h2>Bucket List</h2>
+<ul><li>Peluk 24/7</li><li>Jajan banyak</li><li>Punya capybara</li><li>Main game (sampe puas)</li><li>IP bagus</li></ul>
+</div>
+<script>
+const start=new Date("2025-01-03");
+const today=new Date();
+document.getElementById("days").innerText=Math.floor((today-start)/(1000*60*60*24));
+</script>
+</body></html>
