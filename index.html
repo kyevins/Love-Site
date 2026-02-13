@@ -7,23 +7,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
-    /* Palet Warna Baru: Pink Menyala & Ungu Taro */
+    /* Warna Request: Pink Menyala & Ungu Taro */
     --hot-pink: #ff007f;
-    --taro-purple: #9482b9; /* Warna Taro yang khas */
-    --light-taro: #e2d5f8;
-    --text-dark: #2d1b4d; /* Ungu gelap untuk teks agar kontras */
-    --card-bg: rgba(255, 255, 255, 0.95);
+    --taro-purple: #9482b9;
+    --deep-taro: #6d5b97;
+    --text-white: #ffffff;
 }
 
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    /* Gradasi Pink ke Taro */
-    background: linear-gradient(135deg, #fff1f8 0%, #e2d5f8 100%);
-    color: var(--text-dark);
+    /* Background Gradient Pink Menyala ke Taro */
+    background: linear-gradient(135deg, var(--hot-pink) 0%, var(--taro-purple) 100%);
+    background-attachment: fixed;
+    color: var(--text-white);
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
+/* Dekorasi Background (Hati & Bunga) */
+.bg-decor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.item {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.6;
+    animation: float 10s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(20deg); }
+}
+
+/* Kontainer Utama */
 .container {
     max-width: 900px;
     margin: auto;
@@ -37,32 +62,32 @@ header {
 
 h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 4rem; /* Lebih besar */
-    color: var(--hot-pink);
+    font-size: 4.5rem;
+    color: white;
     margin: 0;
-    /* Efek menyala tipis */
-    text-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
 }
 
 .counter-box {
     margin-top: 15px;
-    font-size: 1.25rem;
-    color: var(--text-dark);
-    font-weight: 500;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    display: inline-block;
 }
 
 #days {
     font-weight: 800;
-    color: var(--hot-pink);
-    font-size: 2.2rem;
-    display: block;
-    margin: 5px 0;
+    color: white;
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px rgba(255,255,255,0.5);
 }
 
 h2 {
     font-size: 1.8rem;
-    color: var(--taro-purple);
-    border-bottom: 3px solid var(--hot-pink);
+    color: white;
+    border-bottom: 4px solid rgba(255,255,255,0.4);
     display: inline-block;
     padding-bottom: 5px;
     margin-bottom: 25px;
@@ -74,50 +99,47 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+/* Card Styling dengan Glassmorphism */
 .card {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
     padding: 25px;
     border-radius: 24px;
-    /* Shadow lebih ke arah Taro */
-    box-shadow: 0 10px 25px rgba(148, 130, 185, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 35px rgba(255, 0, 127, 0.2);
-    border-color: var(--light-taro);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
 }
 
 .major-tag {
     font-size: 0.85rem;
-    background: var(--light-taro);
-    color: var(--text-dark);
+    background: var(--hot-pink);
+    color: white;
     padding: 6px 14px;
     border-radius: 20px;
     display: inline-block;
     margin: 10px 0;
     font-weight: 600;
-    border: 1px solid var(--taro-purple);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Gallery - Smooth Scroll */
+/* Gallery Horizontal Scroll */
 .gallery {
     display: flex;
     gap: 18px;
     overflow-x: auto;
     padding-bottom: 25px;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
 }
 
-/* Custom Scrollbar Taro */
-.gallery::-webkit-scrollbar {
-    height: 8px;
-}
+.gallery::-webkit-scrollbar { height: 8px; }
 .gallery::-webkit-scrollbar-thumb {
-    background: var(--taro-purple);
+    background: white;
     border-radius: 10px;
 }
 
@@ -125,53 +147,34 @@ h2 {
     width: 260px;
     height: 350px;
     object-fit: cover;
-    border-radius: 25px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 30px;
+    border: 4px solid rgba(255,255,255,0.5);
     flex-shrink: 0;
     scroll-snap-align: center;
-    transition: 0.4s;
-    border: 3px solid transparent;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-    border-color: var(--hot-pink);
 }
 
 .bucket-list {
-    background: rgba(255, 255, 255, 0.6);
-    padding: 30px;
-    border-radius: 24px;
     columns: 2;
     font-weight: 500;
-}
-
-/* Dekorasi List */
-ul li {
-    list-style: none;
-    position: relative;
-    padding-left: 5px;
-    margin-bottom: 8px;
-}
-ul li::before {
-    content: "✨";
-    margin-right: 8px;
+    color: white;
 }
 
 @media (max-width: 600px) {
     .bucket-list { columns: 1; }
-    h1 { font-size: 2.8rem; }
+    h1 { font-size: 3rem; }
 }
 </style>
 </head>
 <body>
 
+<div class="bg-decor" id="bgDecor"></div>
+
 <div class="container">
     <header>
         <h1>Our Love Story</h1>
         <div class="counter-box">
-            Already <span id="days">0</span> days since our first day.
-            <br><small style="opacity: 0.8; color: var(--taro-purple);">January 3rd, 2025</small>
+            Already <span id="days">0</span> days together
+            <br><small>Since January 3rd, 2025</small>
         </div>
     </header>
 
@@ -179,16 +182,16 @@ ul li::before {
         <h2>About Us</h2>
         <div class="grid">
             <div class="card">
-                <div style="font-size: 2.5rem; margin-bottom: 10px;">💻</div>
-                <strong style="font-size: 1.2rem;">Virdhi Yastana Buma</strong><br>
+                <div style="font-size: 2.5rem;">💻</div>
+                <strong>Virdhi Yastana Buma</strong><br>
                 <span class="major-tag">Information System & Tech @ ITB</span><br>
-                <small>🎂 14 Agustus 2007</small>
+                <small>🎂 August 14th, 2007</small>
             </div>
             <div class="card">
-                <div style="font-size: 2.5rem; margin-bottom: 10px;">⚛️</div>
-                <strong style="font-size: 1.2rem;">Felicia Muharam Putri Pandu</strong><br>
+                <div style="font-size: 2.5rem;">⚛️</div>
+                <strong>Felicia Muharam Putri Pandu</strong><br>
                 <span class="major-tag">Physics Student @ UI</span><br>
-                <small>🎂 21 Januari 2007</small>
+                <small>🎂 January 21st, 2007</small>
             </div>
         </div>
     </section>
@@ -196,9 +199,9 @@ ul li::before {
     <section>
         <h2>What We Loves</h2>
         <div class="grid">
-            <div class="card" style="border-left: 5px solid var(--hot-pink);">
-                <strong style="color: var(--hot-pink);">Felicia Loves:</strong>
-                <ul style="padding-left: 0; margin-top: 15px;">
+            <div class="card">
+                <strong>Felicia Loves:</strong>
+                <ul style="padding-left: 20px; margin-top: 15px;">
                     <li>Mam enak 🍱</li>
                     <li>Buku 📚</li>
                     <li>Bobo Nyenyak 😴</li>
@@ -206,14 +209,14 @@ ul li::before {
                     <li>Nonton Film 🍿</li>
                 </ul>
             </div>
-            <div class="card" style="border-left: 5px solid var(--taro-purple);">
-                <strong style="color: var(--taro-purple);">Virdhi Loves:</strong>
-                <ul style="padding-left: 0; margin-top: 15px;">
-                    <li>Duit (Pastinya) 💸</li>
+            <div class="card">
+                <strong>Virdhi Loves:</strong>
+                <ul style="padding-left: 20px; margin-top: 15px;">
+                    <li>Duit 💸</li>
                     <li>Feli</li>
-                    <li>Cia</li>
-                    <li>Sayangku</li>
-                    <li>Cantikku</li>
+		    <li>Cia
+		    <li>Sayangkuu
+		    <li>Cantikku
                     <li>Felicia Muharam Putri Pandu ❤️</li>        
                 </ul>
             </div>
@@ -223,47 +226,55 @@ ul li::before {
     <section>
         <h2>Gallery</h2>
         <div class="gallery">
-            <img src="img1.jpg">
-            <img src="img2.jpg">
-            <img src="img3.jpg">
-            <img src="img4.jpg">
-            <img src="img5.jpg">
-            <img src="img6.jpg">
-            <img src="img7.jpg">
-            <img src="img8.jpg">
+            <img src="img1.jpg"> <img src="img2.jpg"> <img src="img3.jpg"> <img src="img4.jpg">
+            <img src="img5.jpg"> <img src="img6.jpg"> <img src="img7.jpg"> <img src="img8.jpg">
         </div>
     </section>
 
     <section>
         <h2>Bucket List</h2>
-        <div class="card" style="background: linear-gradient(to right, #ffffff, var(--light-taro));">
+        <div class="card">
             <div class="bucket-list">
-                <div style="margin-bottom: 12px;">✅ Peluk 24/7</div>
-                <div style="margin-bottom: 12px;">✅ Jajan banyak bareng</div>
-                <div style="margin-bottom: 12px;">✅ Punya capybara lucu</div>
-                <div style="margin-bottom: 12px;">✅ Main game sampe puas</div>
-                <div style="margin-bottom: 12px;">✅ Trend gAAAAAAAnteng cAAAAAAAntik</div>
-                <div style="margin-bottom: 12px;">✅ Menang ritual kiss</div>
+                <div>✅ Peluk 24/7</div>
+                <div>✅ Jajan banyak bareng</div>
+                <div>✅ Punya capybara lucu</div>
+                <div>✅ Main game sampe puas</div>
+                <div>✅ Trend gAAAAAAAnteng cAAAAAAAntik</div>
+                <div>✅ Menang ritual kiss</div>
             </div>
         </div>
     </section>
 </div>
 
 <script>
+    // Update Counter Hari
     function updateCounter() {
         const start = new Date(2025, 0, 3); 
         const now = new Date();
-        
         start.setHours(0,0,0,0);
         now.setHours(0,0,0,0);
-        
-        const diffInMs = now - start;
-        const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-        
+        const diffInDays = Math.floor((now - start) / (1000 * 60 * 60 * 24));
         document.getElementById("days").innerText = diffInDays;
     }
-    
+
+    // Generate Bunga & Hati Acak di Background
+    function createDecor() {
+        const container = document.getElementById('bgDecor');
+        const items = ['❤️', '🌸', '✨', '💖', '🌷'];
+        for (let i = 0; i < 20; i++) {
+            const div = document.createElement('div');
+            div.className = 'item';
+            div.innerText = items[Math.floor(Math.random() * items.length)];
+            div.style.left = Math.random() * 100 + 'vw';
+            div.style.top = Math.random() * 100 + 'vh';
+            div.style.animationDelay = Math.random() * 5 + 's';
+            div.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            container.appendChild(div);
+        }
+    }
+
     updateCounter();
+    createDecor();
 </script>
 
 </body>
